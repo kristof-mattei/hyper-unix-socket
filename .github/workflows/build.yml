@@ -423,11 +423,10 @@ jobs:
     needs:
       - calculate-version
       - cargo-build
+      - cargo-examples
       - cargo-fmt
       - cargo-clippy-and-report
       - cargo-test-and-report
-      - docker-build
-      - docker-publish
     if: always()
     steps:
       - name: Fail!
