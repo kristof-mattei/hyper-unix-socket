@@ -2,6 +2,6 @@
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
         "github>kristof-mattei/renovate-config",
-        "local>kristof-mattei/hyper-unix-sockets//renovate-dont-update-cargo"
+        "local>kristof-mattei/hyper-unix-socket//renovate-dont-update-cargo"
     ]
 }
