@@ -28,6 +28,7 @@ env:
   DOCKER_IMAGE_ARTIFACT_NAME: Docker image
   DOCKER_IMAGE_OUTPUT_LOCATION: /tmp
   DOCKER_IMAGE_TAR_LOCATION: /tmp/docker-image.tar # notice /tmp same as DOCKER_IMAGE_OUTPUT_LOCATION
+  RUSTFLAGS: -Dclippy::all -Dclippy::pedantic -Dclippy::cargo -Dwarnings
 
 concurrency:
   # each new commit to a PR runs this workflow
@@ -187,6 +188,50 @@ jobs:
         shell: bash
         run: |
           cargo build --all-targets --workspace --verbose
+
+  cargo-examples:
+    name: Cargo examples
+    runs-on: ubuntu-latest
+    needs:
+      - changes
+    if: |
+      github.event_name == 'pull_request' &&
+      fromJSON(needs.changes.outputs.code) == true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+          show-progress: false
+
+      - name: Cache dependencies
+        uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84 # v3.3.2
+        env:
+          CACHE_NAME: cargo-cache-dependencies
+        with:
+          path: |
+            ~/.cargo
+            ./target
+          key: ${{ runner.os }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-examples
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-
+            ${{ runner.os }}-build-${{ env.CACHE_NAME }}-
+
+      - name: Set up toolchain
+        shell: bash
+        run: |
+          rm ${HOME}/.cargo/bin/rustfmt
+          rm ${HOME}/.cargo/bin/cargo-fmt
+          rustup update
+
+          cargo --version
+
+      - name: Run examples
+        shell: bash
+        run: |
+          for example in examples/*.rs
+          do
+              cargo run --example "$(basename "${example%.rs}")" --all-features
+          done
 
   cargo-fmt:
     name: Cargo fmt
@@ -457,6 +502,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - cargo-build
+      - cargo-examples
       - cargo-fmt
       - cargo-test-and-report
       - cargo-clippy-and-report
