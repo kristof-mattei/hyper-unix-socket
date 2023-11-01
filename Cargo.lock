@@ -91,6 +91,13 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6fb8d784f27acf97159b40fc4db5ecd8aa23b9ad5ef69cdd136d3bc80665f0c0"
 
 [[package]]
+name = "hyper-unix-socket"
+version = "0.0.0-development"
+dependencies = [
+ "color-eyre",
+]
+
+[[package]]
 name = "indenter"
 version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -149,13 +156,6 @@ name = "pin-project-lite"
 version = "0.2.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8afb450f006bf6385ca15ef45d71d2288452bc3683ce2e2cacc0d18e4be60b58"
-
-[[package]]
-name = "rust-end-to-end-application"
-version = "0.0.0-development"
-dependencies = [
- "color-eyre",
-]
 
 [[package]]
 name = "rustc-demangle"
