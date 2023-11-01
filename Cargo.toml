@@ -5,35 +5,27 @@ version = "0.0.0-development"
 edition = "2021"
 rust-version = "1.73.0"
 authors = ["Kristof Mattei"]
-description = "Rust end-to-end application"
+description = "Default Unix Socket implementation for use with hyper"
 license-file = "LICENSE"
-categories = ["starter", "end-to-end"]
-keywords = ["integrity", "end-to-end", "starter", "docker", "release"]
+categories = ["library", "unix"]
+keywords = ["hyper", "unix", "socket"]
 repository = "https://github.com/kristof-mattei/hyper-unix-socket"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[profile.dev.package.backtrace]
-opt-level = 3
-
-[features]
-coverage = []
-
 [dependencies]
-color-eyre = "0.6.2"
-# reqwest = { version = "0.11.5", features = ["json"] }
-# serde_json = "1.0.68"
-# serde = { version = "1.0.130", features = ["derive"] }
-# futures = "0.3.17"
-# tokio = { version = "1.12.0", features = ["full"] }
-# log = "0.4.14"
-# env_logger = "0.9.0"
-# serde_yaml = "0.8.21"
-# clap = { version = "3.0.14", features = ["derive"] }
+bytes = "1"
+hyper = { version = "1.0.0-rc.4", default-features = false, features = [
+    "http-body-util",
+] }
+hyper-util = { git = "https://github.com/hyperium/hyper-util", default-features = false, features = [
+    "client",
+], rev = "ced9f812460420017705fa7cae4dca7be9e23f4a" }
+tokio = "1"
+tower-service = "0.3"
+pin-project-lite = "0.2.13"
 
-# We compile the Docker container with musl to get a static library. Smaller, faster.
-# BUT that means that we need to include openssl
-# Documentation on the syntax:
-# https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#platform-specific-dependencies
-[target.'cfg(all(target_arch = "x86_64", target_os="linux", target_env="musl"))'.dependencies]
-# openssl = { version = "0.10.36", features = ["vendored"] }
+[dev-dependencies]
+tokio = { version = "1.0.0", features = ["io-std", "macros", "io-util"] }
+hyper-util = { git = "https://github.com/hyperium/hyper-util", default-features = false, features = [
+    "http1",
+], rev = "ced9f812460420017705fa7cae4dca7be9e23f4a" }
+http-body-util = "0.1.0-rc.3"
