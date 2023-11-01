@@ -28,20 +28,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  repo-has-container:
-    name: Repo has container?
-    runs-on: ubuntu-latest
-    outputs:
-      has_container: ${{ steps.determine.outputs.has_container }}
-
-    steps:
-      - name: Repo has docker container?
-        id: determine
-        shell: bash
-        run: |
-          HAS_CONTAINER="${{ vars.HAS_CONTAINER }}"
-          echo "has_container=${HAS_CONTAINER:-false}" >> ${GITHUB_OUTPUT}
-
   changes:
     name: Detect changes
     runs-on: ubuntu-latest
