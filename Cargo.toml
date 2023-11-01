@@ -6,7 +6,7 @@ edition = "2021"
 rust-version = "1.73.0"
 authors = ["Kristof Mattei"]
 description = "Default Unix Socket implementation for use with hyper"
-license-file = "LICENSE"
+license = "MIT OR Apache-2.0"
 categories = ["library", "unix"]
 keywords = ["hyper", "unix", "socket"]
 repository = "https://github.com/kristof-mattei/hyper-unix-socket"
@@ -19,12 +19,12 @@ hyper = { version = "1.0.0-rc.4", default-features = false, features = [
 hyper-util = { git = "https://github.com/hyperium/hyper-util", default-features = false, features = [
     "client",
 ], rev = "ced9f812460420017705fa7cae4dca7be9e23f4a" }
-tokio = "1"
+tokio = { version = "1", default-features = false }
 tower-service = "0.3"
 pin-project-lite = "0.2.13"
 
 [dev-dependencies]
-tokio = { version = "1.33.0", features = ["io-std", "macros", "io-util"] }
+tokio = { version = "1.33.0", features = ["macros", "io-util"] }
 hyper-util = { git = "https://github.com/hyperium/hyper-util", default-features = false, features = [
     "http1",
 ], rev = "ced9f812460420017705fa7cae4dca7be9e23f4a" }
