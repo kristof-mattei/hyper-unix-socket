@@ -13,12 +13,10 @@ repository = "https://github.com/kristof-mattei/hyper-unix-socket"
 
 [dependencies]
 bytes = "1"
-hyper = { version = "1.0.0-rc.4", default-features = false, features = [
-    "http-body-util",
-] }
+hyper = { version = "1.0.0", default-features = false, features = [] }
 hyper-util = { git = "https://github.com/hyperium/hyper-util", default-features = false, features = [
     "client",
-], rev = "11776bd742196691d03203caa0f4acd29df696bd" }
+], rev = "de1ff4c4d0ced92b571e873e6754baaed0906f6c" }
 tokio = { version = "1", default-features = false }
 tower-service = "0.3"
 pin-project-lite = "0.2.13"
@@ -27,5 +25,5 @@ pin-project-lite = "0.2.13"
 tokio = { version = "1.33.0", features = ["macros", "io-util"] }
 hyper-util = { git = "https://github.com/hyperium/hyper-util", default-features = false, features = [
     "http1",
-], rev = "11776bd742196691d03203caa0f4acd29df696bd" }
-http-body-util = "0.1.0-rc.3"
+], rev = "de1ff4c4d0ced92b571e873e6754baaed0906f6c" }
+http-body-util = "0.1.0"
