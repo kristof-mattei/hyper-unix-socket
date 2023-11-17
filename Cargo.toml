@@ -16,7 +16,7 @@ bytes = "1"
 hyper = { version = "1.0.0", default-features = false, features = [] }
 hyper-util = { git = "https://github.com/hyperium/hyper-util", default-features = false, features = [
     "client",
-], rev = "de1ff4c4d0ced92b571e873e6754baaed0906f6c" }
+], rev = "0e5347a4ac101f340f9401e9ac1a6bec1549da36" }
 tokio = { version = "1", default-features = false }
 tower-service = "0.3"
 pin-project-lite = "0.2.13"
@@ -25,5 +25,5 @@ pin-project-lite = "0.2.13"
 tokio = { version = "1.33.0", features = ["macros", "io-util"] }
 hyper-util = { git = "https://github.com/hyperium/hyper-util", default-features = false, features = [
     "http1",
-], rev = "de1ff4c4d0ced92b571e873e6754baaed0906f6c" }
+], rev = "0e5347a4ac101f340f9401e9ac1a6bec1549da36" }
 http-body-util = "0.1.0"
