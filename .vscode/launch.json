@@ -23,9 +23,9 @@
             "cwd": "${workspaceFolder}",
             "env": {
                 "RUST_BACKTRACE": "1",
-                "RUST_LOG": "debug,hyper_unix_socket=trace"
+                "RUST_LOG": "DEBUG,hyper_unix_socket=TRACE"
             },
-            "terminal": "console"
+            "terminal": "integrated"
         },
         {
             "type": "lldb",
@@ -47,9 +47,9 @@
             "cwd": "${workspaceFolder}",
             "env": {
                 "RUST_BACKTRACE": "1",
-                "RUST_LOG": "debug,hyper_unix_socket=trace"
+                "RUST_LOG": "DEBUG,hyper_unix_socket=TRACE"
             },
-            "terminal": "console"
+            "terminal": "integrated"
         },
         {
             "type": "lldb",
@@ -71,9 +71,9 @@
             "cwd": "${workspaceFolder}",
             "env": {
                 "RUST_BACKTRACE": "1",
-                "RUST_LOG": "debug,hyper_unix_socket=trace"
+                "RUST_LOG": "DEBUG,hyper_unix_socket=TRACE"
             },
-            "terminal": "console"
+            "terminal": "integrated"
         }
     ]
 }
