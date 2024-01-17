@@ -1,7 +1,8 @@
 use bytes::Bytes;
 use http_body_util::{BodyExt, Empty};
 use hyper_unix_socket::UnixSocketConnector;
-use hyper_util::{client::legacy::Client, rt::TokioExecutor};
+use hyper_util::client::legacy::Client;
+use hyper_util::rt::TokioExecutor;
 use tokio::io::{self, AsyncWriteExt as _};
 
 #[tokio::main(flavor = "current_thread")]

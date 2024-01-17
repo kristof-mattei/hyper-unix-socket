@@ -1,15 +1,11 @@
-use std::fmt;
-use std::io;
 use std::io::IoSlice;
 use std::pin::Pin;
 use std::task::{Context, Poll};
+use std::{fmt, io};
 
 use hyper::rt::{Read, ReadBufCursor, Write};
-
-use hyper_util::{
-    client::legacy::connect::{Connected, Connection},
-    rt::TokioIo,
-};
+use hyper_util::client::legacy::connect::{Connected, Connection};
+use hyper_util::rt::TokioIo;
 use tokio::net::UnixStream;
 
 /// A stream that goes over a Unix socket.
