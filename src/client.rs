@@ -1,11 +1,13 @@
+use std::fmt;
+use std::future::Future;
+use std::marker::PhantomData;
+use std::path::Path;
+use std::pin::Pin;
+use std::task::{self, Context, Poll};
+
 use hyper::Uri;
 use hyper_util::rt::TokioIo;
 use pin_project_lite::pin_project;
-use std::pin::Pin;
-use std::task::Context;
-use std::task::{self, Poll};
-use std::{fmt, marker::PhantomData};
-use std::{future::Future, path::Path};
 use tokio::net::UnixStream;
 use tower_service::Service;
 

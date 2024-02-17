@@ -18,8 +18,7 @@ permissions:
 
 env:
   CARGO_TERM_COLOR: always
-  # just a name, but storing it separately as we're nice people
-  RUSTFLAGS: -Dclippy::all -Dclippy::pedantic -Dclippy::cargo -Dwarnings
+  RUSTFLAGS: --deny=warnings
 
 concurrency:
   # each new commit to a PR runs this workflow
@@ -40,7 +39,7 @@ jobs:
           show-progress: false
 
       - name: Check if we actually made changes
-        uses: dorny/paths-filter@4512585405083f25c027a35db413c2b3b9006d50 # tag=v2.11.1
+        uses: dorny/paths-filter@ebc4d7e9ebcb0b1eb21480bb8f43113e996ac77a # v3.0.1
         id: filter
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -52,7 +51,7 @@ jobs:
     needs:
       - changes
     outputs:
-      version: ${{ steps.version.outputs.nextversion }}
+      version: ${{ steps.version.outputs.next_version }}
     if: |
       github.event_name == 'pull_request' &&
       fromJSON(needs.changes.outputs.code) == true
@@ -64,7 +63,7 @@ jobs:
           fetch-depth: 0
 
       - name: Cache dependencies
-        uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84 # v3.3.2
+        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4
         env:
           CACHE_NAME: cargo-cache-dependencies
         with:
@@ -75,6 +74,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-
             ${{ runner.os }}-build-${{ env.CACHE_NAME }}-
+
+      - name: Set up mold
+        uses: rui314/setup-mold@a06ef6535ccec20261b6f58bbadf24d1ef0e5486 # v1
 
       - name: Set up toolchain
         shell: bash
@@ -109,19 +111,19 @@ jobs:
         run: |
           VERSION="$(cog bump --auto --dry-run || true)"
 
-          if [[ -z $VERSION ]]; then
+          if [[ "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              echo "New version: ${VERSION}"
+          else
               VERSION="$(git tag --points-at "$(git rev-list --tags --max-count=1)" | sort --reverse | head --lines 1)"
 
               echo "No version generated, defaulting to latest git tag: ${VERSION}"
-          else
-              echo "New version: ${VERSION}"
           fi
 
           # remove v
           VERSION="${VERSION//v/}"
 
           # store
-          echo "nextversion=${VERSION}" >> ${GITHUB_OUTPUT}
+          echo "next_version=${VERSION}" >> ${GITHUB_OUTPUT}
 
   cargo-build:
     name: Cargo build
@@ -138,7 +140,7 @@ jobs:
           show-progress: false
 
       - name: Cache dependencies
-        uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84 # v3.3.2
+        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4
         env:
           CACHE_NAME: cargo-cache-dependencies
         with:
@@ -149,6 +151,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-
             ${{ runner.os }}-build-${{ env.CACHE_NAME }}-
+
+      - name: Set up mold
+        uses: rui314/setup-mold@a06ef6535ccec20261b6f58bbadf24d1ef0e5486 # v1
 
       - name: Set up toolchain
         shell: bash
@@ -179,7 +184,7 @@ jobs:
           show-progress: false
 
       - name: Cache dependencies
-        uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84 # v3.3.2
+        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4
         env:
           CACHE_NAME: cargo-cache-dependencies
         with:
@@ -223,7 +228,7 @@ jobs:
           show-progress: false
 
       - name: Cache dependencies
-        uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84 # v3.3.2
+        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4
         env:
           CACHE_NAME: cargo-cache-dependencies
         with:
@@ -234,6 +239,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-
             ${{ runner.os }}-build-${{ env.CACHE_NAME }}-
+
+      - name: Set up mold
+        uses: rui314/setup-mold@a06ef6535ccec20261b6f58bbadf24d1ef0e5486 # v1
 
       - name: Set up toolchain
         shell: bash
@@ -262,7 +270,7 @@ jobs:
           show-progress: false
 
       - name: Cache dependencies
-        uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84 # v3.3.2
+        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4
         env:
           CACHE_NAME: cargo-cache-dependencies
         with:
@@ -273,6 +281,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-
             ${{ runner.os }}-build-${{ env.CACHE_NAME }}-
+
+      - name: Set up mold
+        uses: rui314/setup-mold@a06ef6535ccec20261b6f58bbadf24d1ef0e5486 # v1
 
       - name: Set up toolchain
         shell: bash
@@ -313,7 +324,7 @@ jobs:
       - name: Build with instrumentation support
         shell: bash
         env:
-          RUSTFLAGS: "-C instrument-coverage"
+          RUSTFLAGS: "${{ env.RUSTFLAGS }} -C instrument-coverage"
         run: |
           cargo build --all-targets --workspace --verbose
 
@@ -321,14 +332,14 @@ jobs:
         shell: bash
         id: tests
         env:
-          RUSTFLAGS: "-C instrument-coverage"
+          RUSTFLAGS: "${{ env.RUSTFLAGS }} -C instrument-coverage"
           LLVM_PROFILE_FILE: "profiling/profile-%p-%m.profraw"
         run: |
           cargo nextest run --profile ci --no-fail-fast --all-targets --workspace
         continue-on-error: true
 
       - name: Upload test results
-        uses: EnricoMi/publish-unit-test-result-action@ca89ad036b5fcd524c1017287fb01b5139908408 # v2.11.0
+        uses: EnricoMi/publish-unit-test-result-action@8885e273a4343cd7b48eaa72428dea0c3067ea98 # v2.14.0
         with:
           check_name: Test results
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -371,7 +382,7 @@ jobs:
           show-progress: false
 
       - name: Cache dependencies
-        uses: actions/cache@704facf57e6136b1bc63b828d79edcd491f0ee84 # v3.3.2
+        uses: actions/cache@13aacd865c20de90d75de3b17ebe84f7a17d57d2 # v4
         env:
           CACHE_NAME: cargo-cache-dependencies
         with:
@@ -383,6 +394,9 @@ jobs:
             ${{ runner.os }}-build-${{ env.CACHE_NAME }}-${{ hashFiles('Cargo.lock') }}-
             ${{ runner.os }}-build-${{ env.CACHE_NAME }}-
 
+      - name: Set up mold
+        uses: rui314/setup-mold@a06ef6535ccec20261b6f58bbadf24d1ef0e5486 # v1
+
       - name: Set up toolchain
         shell: bash
         run: |
@@ -393,9 +407,9 @@ jobs:
           cargo --version
 
       - name: Run Clippy for GitHub Actions report
-        uses: actions-rs-plus/clippy-check@58bb2527088f0a574f000fad0244d021aeebc55a # v2.1.1
+        uses: actions-rs-plus/clippy-check@30fef0f891edb491831cd248156cfb18d7d12fda # v2.2.0
         with:
-          args: --workspace --all-targets --all-features
+          args: --workspace --all-targets --all-features --no-deps
 
   all-done:
     name: All done
