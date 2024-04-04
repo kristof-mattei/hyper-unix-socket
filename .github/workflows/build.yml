@@ -81,8 +81,10 @@ jobs:
       - name: Set up toolchain
         shell: bash
         run: |
-          rm ${HOME}/.cargo/bin/rustfmt
           rm ${HOME}/.cargo/bin/cargo-fmt
+          rm ${HOME}/.cargo/bin/rust-analyzer
+          rm ${HOME}/.cargo/bin/rustfmt
+
           rustup update
 
           cargo --version
@@ -106,8 +108,8 @@ jobs:
           cargo binstall --no-confirm cocogitto --target x86_64-unknown-linux-musl --pkg-url "{ repo }/releases/download/{ version }/{ name }-{ version }-{ target }.tar.gz" --bin-dir "{ bin }" --pkg-fmt tgz
 
       - name: Calculate next version
-        id: version
         shell: bash
+        id: version
         run: |
           VERSION="$(cog bump --auto --dry-run || true)"
 
@@ -158,8 +160,10 @@ jobs:
       - name: Set up toolchain
         shell: bash
         run: |
-          rm ${HOME}/.cargo/bin/rustfmt
           rm ${HOME}/.cargo/bin/cargo-fmt
+          rm ${HOME}/.cargo/bin/rust-analyzer
+          rm ${HOME}/.cargo/bin/rustfmt
+
           rustup update
 
           cargo --version
@@ -246,8 +250,10 @@ jobs:
       - name: Set up toolchain
         shell: bash
         run: |
-          rm ${HOME}/.cargo/bin/rustfmt
           rm ${HOME}/.cargo/bin/cargo-fmt
+          rm ${HOME}/.cargo/bin/rust-analyzer
+          rm ${HOME}/.cargo/bin/rustfmt
+
           rustup update
 
           cargo --version
@@ -288,8 +294,10 @@ jobs:
       - name: Set up toolchain
         shell: bash
         run: |
-          rm ${HOME}/.cargo/bin/rustfmt
           rm ${HOME}/.cargo/bin/cargo-fmt
+          rm ${HOME}/.cargo/bin/rust-analyzer
+          rm ${HOME}/.cargo/bin/rustfmt
+
           rustup update
 
           cargo --version
@@ -350,11 +358,11 @@ jobs:
         run: |
           grcov $(find profiling -name "profile-*.profraw" -print) --source-dir . --binary-path ./target/debug/ --output-type lcov --branch --ignore-not-existing --llvm --keep-only "src/**" --keep-only "tests/**" --output-path ./reports/lcov.info
 
-      - name: Upload to Coveralls
-        uses: coverallsapp/github-action@3dfc5567390f6fa9267c0ee9c251e4c8c3f18949 # v2.2.3
+      - name: Upload coverage results (to Codecov.io)
+        uses: codecov/codecov-action@7afa10ed9b269c561c2336fd862446844e0cbf71 # v4.2.0
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: reports/lcov.info
+          file: reports/lcov.info
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Fail if tests failed
         shell: bash
@@ -400,8 +408,10 @@ jobs:
       - name: Set up toolchain
         shell: bash
         run: |
-          rm ${HOME}/.cargo/bin/rustfmt
           rm ${HOME}/.cargo/bin/cargo-fmt
+          rm ${HOME}/.cargo/bin/rust-analyzer
+          rm ${HOME}/.cargo/bin/rustfmt
+
           rustup update
 
           cargo --version
