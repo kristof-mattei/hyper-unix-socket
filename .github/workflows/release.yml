@@ -3,6 +3,8 @@ name: Release
 env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
+  # github.repository as <account>/<repo>
+  IMAGE_NAME: ${{ github.repository }}
 
 concurrency:
   group: "${{ github.workflow }}"
@@ -23,7 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Only on main
-        if: github.ref != 'refs/heads/main'
+        if: |
+          github.ref != 'refs/heads/main'
         shell: bash
         run: |
           echo "Only to be executed on main"
