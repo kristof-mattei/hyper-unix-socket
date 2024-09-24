@@ -47,5 +47,6 @@ hyper-util = { version = "0.1.0", default-features = false, features = [
 http-body-util = "0.1.0"
 
 [[example]]
+doc-scrape-examples = true
 name = "client"
 required-features = ["tokio/io-std"]
