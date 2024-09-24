@@ -237,7 +237,7 @@ jobs:
         run: |
           for example in examples/*.rs
           do
-              cargo run --example "$(basename "${example%.rs}")" --all-features
+            cargo run --example "$(basename "${example%.rs}")" --all-features --features="$(cat ${example%.rs}-features)"
           done
 
   cargo-fmt:
