@@ -45,3 +45,7 @@ hyper-util = { version = "0.1.0", default-features = false, features = [
     "http1",
 ] }
 http-body-util = "0.1.0"
+
+[[example]]
+name = "client"
+required-features = ["tokio/io-std"]
