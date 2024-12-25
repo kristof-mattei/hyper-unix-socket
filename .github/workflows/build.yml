@@ -18,12 +18,6 @@ permissions:
 
 env:
   CARGO_TERM_COLOR: always
-  # set this to true in GitHub variables to enable building the container
-  # HAS_CONTAINER: true
-  # Use docker.io for Docker Hub if empty
-  REGISTRY: ghcr.io
-  # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
   # just a name, but storing it separately as we're nice people
   RUSTFLAGS: --deny=warnings
 
@@ -34,20 +28,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  repo-has-container:
-    name: Repo has container?
-    runs-on: ubuntu-latest
-    outputs:
-      has_container: ${{ steps.determine.outputs.has_container }}
-
-    steps:
-      - name: Repo has docker container?
-        shell: bash
-        id: determine
-        run: |
-          HAS_CONTAINER="${{ vars.HAS_CONTAINER }}"
-          echo "has_container=${HAS_CONTAINER:-false}" >> ${GITHUB_OUTPUT}
-
   changes:
     name: Detect changes
     runs-on: ubuntu-latest
@@ -71,12 +51,10 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - changes
-      - repo-has-container
     outputs:
       version: ${{ steps.version.outputs.next_version }}
     if: |
       github.event_name == 'pull_request' &&
-      fromJSON(needs.repo-has-container.outputs.has_container) == true &&
       fromJSON(needs.changes.outputs.code) == true
     steps:
       - name: Checkout
@@ -453,187 +431,6 @@ jobs:
         with:
           args: --workspace --all-targets --all-features --no-deps
 
-  docker-build:
-    name: Build Docker container for ${{ matrix.platform.docker }}-${{ matrix.platform.rust }}
-    runs-on: ubuntu-latest
-    needs:
-      - calculate-version
-    # if:
-    # ... is not needed because calculate-version will not run if we disable building the docker container
-    env:
-      APPLICATION_NAME: PLACEHOLDER # overridden in step 'Set application name', this is merely to satisfy the linter
-      PATH_TO_TAR: PLACEHOLDER # same ^
-      PLATFORM_PAIR: PLACEHOLDER # same ^
-      PLATFORM_UNIQUE_TAG: PLACEHOLDER # same ^
-    strategy:
-      fail-fast: false
-      matrix:
-        platform:
-          - docker: linux/amd64
-            rust: x86_64-unknown-linux-musl
-          - docker: linux/arm64
-            rust: aarch64-unknown-linux-musl
-    steps:
-      - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-        with:
-          show-progress: false
-
-      - name: Prepare name
-        run: |
-          platform=${{ matrix.platform.docker }}-${{ matrix.platform.rust }}
-          echo "PLATFORM_PAIR=${platform//\//-}" >> ${GITHUB_ENV}
-
-      - name: Set the Cargo.toml version before we copy in the data into the Docker container
-        shell: bash
-        run: |
-          ./.github/scripts/update-version.sh ${{ needs.calculate-version.outputs.version }}
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@6524bf65af31da8d45b59e8c27de4bd072b392f5 # v3.8.0
-
-      # TODO validate no changes between github.event.pull_request.head.sha and the actual current sha (representing the hypothetical merge)
-
-      - name: Lowercase the image name
-        shell: bash
-        run: |
-          echo "IMAGE_NAME=${IMAGE_NAME,,}" >> ${GITHUB_ENV}
-
-      - name: Set Docker tag
-        shell: bash
-        run: |
-          PLATFORM_UNIQUE_TAG=pr-${{ github.event.pull_request.base.sha }}-${{ github.event.pull_request.head.sha }}-${{ env.PLATFORM_PAIR }}
-          echo "PLATFORM_UNIQUE_TAG=${PLATFORM_UNIQUE_TAG##*/}" >> ${GITHUB_ENV}
-
-      # Extract metadata (tags, labels) for Docker
-      # https://github.com/docker/metadata-action
-      - name: Extract Docker metadata
-        uses: docker/metadata-action@369eb591f429131d6889c46b94e711f089e6ca96 # v5.6.1
-        id: meta
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: |
-            type=raw,value=${{ env.PLATFORM_UNIQUE_TAG }}
-          labels: |
-            org.opencontainers.image.version=pr-${{ github.event.number }}
-            org.opencontainers.image.source=${{ github.event.pull_request.html_url }}
-
-      - name: Log into registry ${{ env.REGISTRY }}
-        uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3.3.0
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set application name
-        shell: bash
-        run: |
-          APPLICATION_NAME=${{ github.repository }}
-          echo "APPLICATION_NAME=${APPLICATION_NAME##*/}" >> ${GITHUB_ENV}
-
-      - name: Build Docker image
-        uses: docker/build-push-action@48aba3b46d1b1fec4febb7c5d0c644b249a11355 # v6.10.0
-        with:
-          build-args: |
-            APPLICATION_NAME=${{ env.APPLICATION_NAME }}
-            TARGET=${{ matrix.platform.rust }}
-          context: .
-          # this container is THE PR's artifact, and we will re-tag it
-          # once the PR has been accepted
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache-${{ env.PLATFORM_PAIR }}
-          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache-${{ env.PLATFORM_PAIR }},mode=max
-          platforms: ${{ matrix.platform.docker }}
-          outputs: type=docker,dest=/tmp/${{ env.PLATFORM_UNIQUE_TAG }}.tar
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5.0
-        with:
-          name: containers-${{ env.PLATFORM_PAIR }}
-          path: /tmp/${{ env.PLATFORM_UNIQUE_TAG }}.tar
-          if-no-files-found: error
-          retention-days: 1
-
-  docker-publish:
-    name: Publish Docker container
-    runs-on: ubuntu-latest
-    needs:
-      - cargo-build
-      - cargo-fmt
-      - cargo-test-and-report
-      - cargo-clippy-and-report
-      - docker-build
-    # Check if the event is not triggered by a fork
-    if: |
-      github.event.pull_request.head.repo.full_name == github.repository &&
-      github.event_name == 'pull_request'
-    steps:
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@6524bf65af31da8d45b59e8c27de4bd072b392f5 # v3.8.0
-
-      - name: Download artifact
-        uses: actions/download-artifact@fa0a91b85d4f404e444e00e005971372dc801d16 # v4.1.8
-        with:
-          path: /tmp/containers
-          pattern: containers-*
-          merge-multiple: true
-
-      - name: Log into registry ${{ env.REGISTRY }}
-        uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3.3.0
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Lowercase the image name
-        shell: bash
-        run: |
-          echo "IMAGE_NAME=${IMAGE_NAME,,}" >> ${GITHUB_ENV}
-
-      - name: Load images from artifacts
-        shell: bash
-        run: |
-          ls -l /tmp/containers/
-          for container in /tmp/containers/*
-          do
-            echo $container
-            docker load --input $container
-            tag=$(basename -- $container .tar)
-            echo ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@sha256:${tag}
-            docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${tag}
-          done
-
-      - name: Extract Docker metadata
-        uses: docker/metadata-action@369eb591f429131d6889c46b94e711f089e6ca96 # v5.6.1
-        id: meta
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: |
-            type=ref,event=pr,suffix=-latest
-            type=raw,value=pr-${{ github.event.pull_request.base.sha }}-${{ github.event.pull_request.head.sha }}
-
-      - name: Merge images
-        shell: bash
-        working-directory: /tmp/containers
-        run: |
-          # all files in dir
-          platform_tags=(*)
-
-          # yeet extension
-          platform_tags=${platform_tags[@]%.tar}
-
-          new_tags="${{ join(steps.meta.outputs.tags, ' ') }}"
-          new_tags=$(printf -- '--tag %s ' $new_tags)
-
-          expanded_platform_tags=$(printf '${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:%s ' $platform_tags)
-
-          docker buildx imagetools create $new_tags $expanded_platform_tags
-
-          for new_tag in $(echo "${{ join(steps.meta.outputs.tags, ' ') }}"); do
-            docker buildx imagetools inspect --raw $new_tag
-          done
-
   all-done:
     name: All done
     # this is the job that should be marked as required on GitHub. It's the only one that'll reliably trigger
@@ -649,8 +446,6 @@ jobs:
       - cargo-fmt
       - cargo-clippy-and-report
       - cargo-test-and-report
-      - docker-build
-      - docker-publish
     if: |
       always()
     steps:

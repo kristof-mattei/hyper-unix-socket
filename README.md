@@ -2,7 +2,7 @@
 
 Provides a Unix Socket connector for use with [hyper](https://hyper.rs) & [hyper-util](https://example.com/#TODO).
 
-[Documentation](https://docs.rs/hyper-unix-strream)
+[Documentation](https://docs.rs/hyper-unix-stream)
 
 ## Acknowledgements
 
