@@ -50,4 +50,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.TOKEN_TO_TRIGGER_SUBSEQUENT_WORKFLOWS }}
         shell: bash
         run: |
-          npm run release
+          npm run release -- --dry-run
