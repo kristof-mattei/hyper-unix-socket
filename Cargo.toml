@@ -7,7 +7,7 @@ rust-version = "1.83.0"
 authors = ["Kristof Mattei"]
 description = "Default Unix Socket implementation for use with hyper"
 license = "MIT OR Apache-2.0"
-categories = ["library", "unix"]
+categories = ["network-programming"]
 keywords = ["hyper", "unix", "socket"]
 repository = "https://github.com/kristof-mattei/hyper-unix-socket"
 
