@@ -22,6 +22,7 @@ module.exports = {
                 changelogFile: "CHANGELOG.md",
             },
         ],
+        "@semantic-release-cargo/semantic-release-cargo",
         "@semantic-release/github",
     ],
     branches: [
