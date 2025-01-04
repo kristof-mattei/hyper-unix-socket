@@ -1,6 +1,6 @@
 [package]
 name = "hyper-unix-socket"
-# don't change this, it's updated before an actual build by update-version.sh
+# don't change this, it is set upon building the container, or when publishing the crate
 version = "0.0.0-development"
 edition = "2021"
 rust-version = "1.83.0"
