@@ -40,11 +40,11 @@ tower-service = "0.3"
 pin-project-lite = "0.2.13"
 
 [dev-dependencies]
-tokio = { version = "1.33.0", features = ["macros", "io-util"] }
-hyper-util = { version = "0.1.0", default-features = false, features = [
+tokio = { version = "=1.33.0", features = ["macros", "io-util"] }
+hyper-util = { version = "=0.1.0", default-features = false, features = [
     "http1",
 ] }
-http-body-util = "0.1.0"
+http-body-util = "=0.1.0"
 
 [[example]]
 doc-scrape-examples = true
