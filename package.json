@@ -7,8 +7,8 @@
     "format": "prettier --write ."
   },
   "engines": {
-    "node": ">=22.12.0",
-    "npm": ">=11.0.0"
+    "node": ">=22.13.1",
+    "npm": ">=11.1.0"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/kristof-mattei/hyper-unix-socket#readme",
   "devDependencies": {
-    "@actions/tool-cache": "2.0.1",
+    "@actions/tool-cache": "2.0.2",
     "prettier": "3.4.2"
   },
   "publishConfig": {
