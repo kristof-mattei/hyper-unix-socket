@@ -23,6 +23,10 @@ perf = "warn"
 style = "warn"
 suspicious = "warn"
 
+# this has 0 performance implications, the binding is compiled away, and it could cause issues
+# when done blindly, plus it makes it harder to debug as you cannot put breakpoints on return
+# values of functions (yet)
+let_and_return = { level = "allow", priority = 127 }
 # this one is debatable. continue is used in places to be explicit, and to guard against
 # issues when refactoring
 needless_continue = { level = "allow", priority = 127 }
@@ -47,11 +51,11 @@ tokio = { version = "1", default-features = false }
 tower-service = "0.3"
 
 [dev-dependencies]
-tokio = { version = "1.33.0", features = ["macros", "io-util"] }
+http-body-util = "0.1.3"
 hyper-util = { version = "0.1.11", default-features = false, features = [
     "http1",
 ] }
-http-body-util = "0.1.3"
+tokio = { version = "1.33.0", features = ["macros", "io-util"] }
 
 [[example]]
 doc-scrape-examples = true
