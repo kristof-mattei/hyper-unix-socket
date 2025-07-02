@@ -10,18 +10,14 @@ on:
       - main
 
 permissions:
-  checks: write
   contents: read
-  id-token: write
-  issues: write
-  packages: write
-  pull-requests: write
 
 concurrency:
   # each new commit to a PR runs this workflow
   # so we need to avoid a long running older one from overwriting the "pr-<number>-latest"
   group: "${{ github.workflow }} @ ${{ github.ref_name }}"
   cancel-in-progress: true
+
 env:
   CARGO_TERM_COLOR: always
   RUSTFLAGS: --deny=warnings
@@ -291,6 +287,10 @@ jobs:
   cargo-test-and-report:
     name: Cargo test (and report)
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      id-token: write
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
