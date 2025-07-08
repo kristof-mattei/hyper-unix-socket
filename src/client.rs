@@ -76,7 +76,6 @@ type BoxConnecting = Pin<Box<dyn Future<Output = ConnectResult> + Send>>;
 
 pin_project! {
     #[must_use = "futures do nothing unless polled"]
-    #[expect(missing_debug_implementations)]
     pub struct UnixStreamConnecting<R = ()> {
         #[pin]
         fut: BoxConnecting,
