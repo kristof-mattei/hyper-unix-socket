@@ -1,6 +1,5 @@
 [package]
 name = "hyper-unix-socket"
-# don't change this, it's updated before an actual build by update-version.sh
 version = "0.0.0-development"
 edition = "2021"
 rust-version = "1.83.0"
@@ -10,6 +9,7 @@ license = "MIT OR Apache-2.0"
 categories = ["network-programming"]
 keywords = ["hyper", "unix", "socket"]
 repository = "https://github.com/kristof-mattei/hyper-unix-socket"
+include = ["src/**", "/LICENSE", "/LICENSE-*"]
 
 [lints.clippy]
 # don't stop from compiling / running
