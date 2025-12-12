@@ -1,4 +1,10 @@
 [toolchain]
+<<<<<<< HEAD
 channel = "1.88.0"
+||||||| c0cbd148
+channel = "1.91.1"
+=======
+channel = "1.92.0"
+>>>>>>> upstream/main
 components = ["cargo", "clippy", "rustfmt"]
 profile = "minimal"
