@@ -4,7 +4,7 @@ Provides a Unix Socket connector for use with [hyper](https://hyper.rs) & [hyper
 
 [Documentation](https://docs.rs/hyper-unix-stream)
 
-## Acknowledgements
+## Acknowledgments
 
 This project is heavily inspired by [hyper-tls](https://github.com/hyper/hyper-tls) and uses the same patterns
 
@@ -12,8 +12,8 @@ This project is heavily inspired by [hyper-tls](https://github.com/hyper/hyper-t
 
 Licensed under either of
 
-- Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or http://apache.org/licenses/LICENSE-2.0)
-- MIT license ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+- Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or <http://apache.org/licenses/LICENSE-2.0>)
+- MIT license ([LICENSE-MIT](LICENSE-MIT) or <http://opensource.org/licenses/MIT>)
 
 ### Contribution
 
