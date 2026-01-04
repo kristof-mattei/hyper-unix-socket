@@ -34,6 +34,9 @@ doc-scrape-examples = true
 name = "client"
 required-features = ["tokio/io-std"]
 
+[package.metadata.spellcheck]
+config = "spellcheck.toml"
+
 [lints.clippy]
 # don't stop from compiling / running
 all = "warn"
