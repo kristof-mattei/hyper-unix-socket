@@ -162,6 +162,7 @@ jobs:
           do
             cargo run --example "$(basename "${example%.rs}")" ${{ env.CARGO_FEATURES }} --features="$(cat ${example%.rs}-features)"
           done
+
   cargo-fmt:
     name: Cargo fmt
     runs-on: ubuntu-latest
