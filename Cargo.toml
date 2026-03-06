@@ -1,7 +1,7 @@
 [package]
 name = "hyper-unix-socket"
 version = "0.0.0-development"
-edition = "2021"
+edition = "2024"
 # When updating this, enable the `doc_paragraphs_missing_punctuation` lint
 rust-version = "1.88.0"
 authors = ["Kristof Mattei"]
