@@ -9,7 +9,7 @@ license = "MIT OR Apache-2.0"
 categories = ["network-programming"]
 keywords = ["hyper", "unix", "socket"]
 repository = "https://github.com/kristof-mattei/hyper-unix-socket"
-include = ["src/**", "/LICENSE", "/LICENSE-*"]
+include = ["examples/**", "src/**", "/LICENSE", "/LICENSE-*"]
 
 [dependencies]
 bytes = "1"
