@@ -1,4 +1,21 @@
 <!-- header goes here -->
+## [0.6.1](https://github.com/kristof-mattei/hyper-unix-socket/compare/v0.6.0..v0.6.1) - 2026-04-13
+
+### 🐛 Bug Fixes
+
+- We can now release without having ANY tags on the repo by [@kristof-mattei](https://github.com/kristof-mattei) ([`80cbc44`](https://github.com/kristof-mattei/hyper-unix-socket/commit/80cbc44189bf721637640dbf7257f852ca82f877))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(ci)* Upload edge to docker.io by [@kristof-mattei](https://github.com/kristof-mattei) ([`f235bac`](https://github.com/kristof-mattei/hyper-unix-socket/commit/f235bac7e7bf720a4c42711f12fa57cb361c6adf))
+- *(ci)* Reattest every stage by [@kristof-mattei](https://github.com/kristof-mattei) ([`19c7f04`](https://github.com/kristof-mattei/hyper-unix-socket/commit/19c7f048fad6474f798c9d810dbe1d2278731d6d))
+- *(ci)* Use skopeo wherever possible by [@kristof-mattei](https://github.com/kristof-mattei) ([`50a6786`](https://github.com/kristof-mattei/hyper-unix-socket/commit/50a678665fd200021293e938c0b493891077a5ef))
+- *(ci)* Scout for visualizing cves etc by [@kristof-mattei](https://github.com/kristof-mattei) ([`2fe6e06`](https://github.com/kristof-mattei/hyper-unix-socket/commit/2fe6e06ada42423eeacec95be6a29ccbd3806068))
+- *(ci)* Username is not secret by [@kristof-mattei](https://github.com/kristof-mattei) ([`7d168f4`](https://github.com/kristof-mattei/hyper-unix-socket/commit/7d168f446d7bbdabaf2bd58c2818af2a65b07c41))
+- *(release)* Release v0.6.1
+- Build docs as part of buidl by [@kristof-mattei](https://github.com/kristof-mattei) ([`625db70`](https://github.com/kristof-mattei/hyper-unix-socket/commit/625db70ea1e6f77beeb4ae36bfbd35b43445964c))
+- Fix fmt by [@kristof-mattei](https://github.com/kristof-mattei) ([`1c63af5`](https://github.com/kristof-mattei/hyper-unix-socket/commit/1c63af585079ee98e0b241fc6683c31982159106))
+- Publish examples by [@kristof-mattei](https://github.com/kristof-mattei) ([`7303651`](https://github.com/kristof-mattei/hyper-unix-socket/commit/7303651a656307e677fce61691cb7dd637d877ee))
 ## [0.6.0](https://github.com/kristof-mattei/hyper-unix-socket/compare/v0.5.0..v0.6.0) - 2026-04-03
 
 ### 🚀 Features
@@ -16,7 +33,7 @@
 - *(build)* Switch to annotations by [@kristof-mattei](https://github.com/kristof-mattei) ([`c041c69`](https://github.com/kristof-mattei/hyper-unix-socket/commit/c041c6948bd7f7318ad320659d8233d416bcbd6a))
 - *(ci)* Allow empty by [@kristof-mattei](https://github.com/kristof-mattei) ([`e6ce7fb`](https://github.com/kristof-mattei/hyper-unix-socket/commit/e6ce7fbb2a3ceb423c1c822dca92049f70f43ea2))
 - *(ci)* Comment cleanup by [@kristof-mattei](https://github.com/kristof-mattei) ([`4fa99d9`](https://github.com/kristof-mattei/hyper-unix-socket/commit/4fa99d9cace57656b0c725fa995cbf85cedd07b4))
-- *(release)* Release v0.6.0
+- *(release)* Release v0.6.0 by [@github-actions[bot]](https://github.com/github-actions[bot]) ([`72f1d98`](https://github.com/kristof-mattei/hyper-unix-socket/commit/72f1d9845e836b183a744289fa66c605f0a4c213))
 - Use trixie as dev image by [@kristof-mattei](https://github.com/kristof-mattei) ([`caa35f4`](https://github.com/kristof-mattei/hyper-unix-socket/commit/caa35f407f67a6bf86e45f83735ec9a5d31df207))
 - Devcontainer mold by [@kristof-mattei](https://github.com/kristof-mattei) ([`d4a14c0`](https://github.com/kristof-mattei/hyper-unix-socket/commit/d4a14c05f92ed61bad93d07ce0ab095b282d0111))
 - Skip more when releasing by [@kristof-mattei](https://github.com/kristof-mattei) ([`762a3bc`](https://github.com/kristof-mattei/hyper-unix-socket/commit/762a3bcfe9b2c625e41b5020939e9bcdb3fb8815))
