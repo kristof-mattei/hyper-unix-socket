@@ -12,15 +12,15 @@ repository = "https://github.com/kristof-mattei/hyper-unix-socket"
 include = ["examples/**", "src/**", "/LICENSE", "/LICENSE-*"]
 
 [dependencies]
-bytes = "1"
-hyper = { version = "1.7.0", default-features = false, features = [] }
-hyper-util = { version = "0.1.17", default-features = false, features = [
+bytes = "=1.12.0"
+hyper = { version = "=1.10.1", default-features = false, features = [] }
+hyper-util = { version = "=0.1.20", default-features = false, features = [
     "client-legacy",
     "tokio",
 ] }
-pin-project-lite = "0.2.16"
-tokio = { version = "1", default-features = false }
-tower-service = "0.3"
+pin-project-lite = "=0.2.17"
+tokio = { version = "=1.52.3", default-features = false }
+tower-service = "=0.3.3"
 
 [dev-dependencies]
 http-body-util = "0.1.3"
