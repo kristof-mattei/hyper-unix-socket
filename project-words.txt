@@ -26,7 +26,6 @@ mypy
 nextest
 nvmrc
 pathbuf
-pids
 postprocessors
 prereleased
 profraw
