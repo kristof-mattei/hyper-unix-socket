@@ -3,7 +3,7 @@
 /reports
 /target
 /Cargo.lock
-
+/version-bump.patch
 # emitted per-crate
 profiling/
 
