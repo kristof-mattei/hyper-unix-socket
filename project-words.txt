@@ -5,6 +5,7 @@ bkeepers
 bufs
 buildcache
 cinstrument
+cliffignore
 ctarget
 cves
 docsrs
@@ -16,17 +17,16 @@ grcov
 hubot
 idents
 kristof
-lldb
 mattei
 monomorphization
 multiplatform
-mypy
 nextest
 pathbuf
 postprocessors
 prereleased
 profraw
 pyflakes
+rawfile
 retag
 retagging
 rhysd
@@ -36,6 +36,7 @@ samply
 sccache
 skopeo
 skopeo's
+slurpfile
 startswith
 striptags
 taiki
