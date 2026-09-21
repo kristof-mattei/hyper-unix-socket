@@ -12,23 +12,23 @@ repository = "https://github.com/kristof-mattei/hyper-unix-socket"
 include = ["examples/**", "src/**", "/LICENSE", "/LICENSE-*"]
 
 [dependencies]
-bytes = "1"
 hyper = { version = "1.7.0", default-features = false, features = [] }
 hyper-util = { version = "0.1.17", default-features = false, features = [
     "client-legacy",
     "tokio",
 ] }
 pin-project-lite = "0.2.16"
-tokio = { version = "1", default-features = false }
+tokio = { version = "1.13.0", default-features = false, features = ["net"] }
 tower-service = "0.3"
 
 [dev-dependencies]
+bytes = "1.7.1"
 http-body-util = "0.1.3"
 hyper-util = { version = "0.1.17", default-features = false, features = [
     "http1",
 ] }
 pretty_assertions = "1.4.1"
-tokio = { version = "1.48.0", features = ["macros", "io-util"] }
+tokio = { version = "1.13.0", features = ["macros", "io-util"] }
 
 [[example]]
 doc-scrape-examples = true
