@@ -19,6 +19,7 @@ idents
 kristof
 lintian
 mattei
+mkhl
 monomorphization
 multiplatform
 nextest
@@ -54,5 +55,4 @@ uninspectable
 unseparated
 usernamehw
 vadimcn
-worktree
 zizmor
