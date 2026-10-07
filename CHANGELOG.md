@@ -1,4 +1,9 @@
 <!-- header goes here -->
+## [0.7.0](https://github.com/kristof-mattei/hyper-unix-socket/compare/v0.6.1..v0.7.0) - 2026-10-07
+
+### 🚀 Features
+
+- Connect to abstract-namespace sockets through `AbstractName` by [@kristof-mattei](https://github.com/kristof-mattei) ([`1501ebe`](https://github.com/kristof-mattei/hyper-unix-socket/commit/1501ebe66292e35eae2fcded0357798c57897c26))
 ## [0.6.1](https://github.com/kristof-mattei/hyper-unix-socket/compare/v0.6.0..v0.6.1) - 2026-04-13
 
 ### 🐛 Bug Fixes
@@ -12,7 +17,7 @@
 - *(ci)* Use skopeo wherever possible by [@kristof-mattei](https://github.com/kristof-mattei) ([`50a6786`](https://github.com/kristof-mattei/hyper-unix-socket/commit/50a678665fd200021293e938c0b493891077a5ef))
 - *(ci)* Scout for visualizing cves etc by [@kristof-mattei](https://github.com/kristof-mattei) ([`2fe6e06`](https://github.com/kristof-mattei/hyper-unix-socket/commit/2fe6e06ada42423eeacec95be6a29ccbd3806068))
 - *(ci)* Username is not secret by [@kristof-mattei](https://github.com/kristof-mattei) ([`7d168f4`](https://github.com/kristof-mattei/hyper-unix-socket/commit/7d168f446d7bbdabaf2bd58c2818af2a65b07c41))
-- *(release)* Release v0.6.1
+- *(release)* Release v0.6.1 by [@github-actions[bot]](https://github.com/github-actions[bot]) ([`85e1417`](https://github.com/kristof-mattei/hyper-unix-socket/commit/85e14179f49b790c1564aac4fcfc47eb451e180b))
 - Build docs as part of buidl by [@kristof-mattei](https://github.com/kristof-mattei) ([`625db70`](https://github.com/kristof-mattei/hyper-unix-socket/commit/625db70ea1e6f77beeb4ae36bfbd35b43445964c))
 - Fix fmt by [@kristof-mattei](https://github.com/kristof-mattei) ([`1c63af5`](https://github.com/kristof-mattei/hyper-unix-socket/commit/1c63af585079ee98e0b241fc6683c31982159106))
 - Publish examples by [@kristof-mattei](https://github.com/kristof-mattei) ([`7303651`](https://github.com/kristof-mattei/hyper-unix-socket/commit/7303651a656307e677fce61691cb7dd637d877ee))
@@ -246,27 +251,9 @@
 ### 🐛 Bug Fixes
 
 - *(deps)* Update rust crate pin-project-lite to v0.2.16 by [@renovate[bot]](https://github.com/renovate[bot]) ([`7910ca8`](https://github.com/kristof-mattei/hyper-unix-socket/commit/7910ca8acf630681fd868f47f131fe7ec610b222))
-- *(deps)* Update rust crate tokio to v1.43.0 by [@renovate[bot]](https://github.com/renovate[bot]) ([`d8301d3`](https://github.com/kristof-mattei/hyper-unix-socket/commit/d8301d331d6730cdd2a553b77fcbf0d8c13b6dbc))
-- *(deps)* Update rust crate hyper to v1.6.0 by [@renovate[bot]](https://github.com/renovate[bot]) ([`9cf6d57`](https://github.com/kristof-mattei/hyper-unix-socket/commit/9cf6d577b2801d0f0ab25d2c15c5799ba6d9118e))
-- *(deps)* Update rust crate bytes to v1.10.0 by [@renovate[bot]](https://github.com/renovate[bot]) ([`acf1a26`](https://github.com/kristof-mattei/hyper-unix-socket/commit/acf1a26b356f9af3793da09168e7b4a076fd2ab1))
-- *(deps)* Update rust crate tokio to v1.43.0 by [@renovate[bot]](https://github.com/renovate[bot]) ([`4a3dbf2`](https://github.com/kristof-mattei/hyper-unix-socket/commit/4a3dbf2fb7f3341fffa2a69488e3e0d8cbb7d072))
 - *(deps)* Update rust crate bytes to v1.10.1 by [@renovate[bot]](https://github.com/renovate[bot]) ([`bc25c16`](https://github.com/kristof-mattei/hyper-unix-socket/commit/bc25c16eb9d9de4461784e5515b426b6edc4402e))
-- *(deps)* Update rust crate tokio to v1.44.0 by [@renovate[bot]](https://github.com/renovate[bot]) ([`618ddb0`](https://github.com/kristof-mattei/hyper-unix-socket/commit/618ddb01dd79e51552fe005124d5e89402fd08c5))
-- *(deps)* Update rust crate tokio to v1.44.1 by [@renovate[bot]](https://github.com/renovate[bot]) ([`059a294`](https://github.com/kristof-mattei/hyper-unix-socket/commit/059a2949d37a7d0a18a0fdcf156bfb1daf74939f))
-- *(deps)* Update rust crate hyper-util to v0.1.11 by [@renovate[bot]](https://github.com/renovate[bot]) ([`70f8891`](https://github.com/kristof-mattei/hyper-unix-socket/commit/70f8891c625606670aecb8ed8997c7b49da1704c))
-- *(deps)* Update rust crate tokio to v1.44.2 by [@renovate[bot]](https://github.com/renovate[bot]) ([`3332275`](https://github.com/kristof-mattei/hyper-unix-socket/commit/333227534faefa7f10b7daaae09e8b0768800386))
-- *(deps)* Update rust crate tokio to v1.45.0 by [@renovate[bot]](https://github.com/renovate[bot]) ([`390c638`](https://github.com/kristof-mattei/hyper-unix-socket/commit/390c63858559f7653a78581d0ef0479239868ac7))
-- *(deps)* Update rust crate hyper-util to v0.1.12 by [@renovate[bot]](https://github.com/renovate[bot]) ([`3499739`](https://github.com/kristof-mattei/hyper-unix-socket/commit/34997396f38ca0e1f36e765d73673a52d0fe892d))
-- *(deps)* Update rust crate tokio to v1.45.1 by [@renovate[bot]](https://github.com/renovate[bot]) ([`428fa4a`](https://github.com/kristof-mattei/hyper-unix-socket/commit/428fa4ac36ece59ad86f00b00c00b3bfb000be14))
-- *(deps)* Update rust crate hyper-util to v0.1.13 by [@renovate[bot]](https://github.com/renovate[bot]) ([`66324a9`](https://github.com/kristof-mattei/hyper-unix-socket/commit/66324a98e1388b6100d793c4518e215f537aab06))
-- *(deps)* Update rust crate hyper-util to v0.1.14 by [@renovate[bot]](https://github.com/renovate[bot]) ([`d2d4153`](https://github.com/kristof-mattei/hyper-unix-socket/commit/d2d415301a84446cde61828907646995a41fc7b9))
 - *(deps)* Update rust crate openssl to 0.10.73 by [@renovate[bot]](https://github.com/renovate[bot]) ([`818d5d7`](https://github.com/kristof-mattei/hyper-unix-socket/commit/818d5d763e04fc8e3f0638a9264e9c8f1aecc4cb))
 - *(deps)* Update rust crate color-eyre to 0.6.5 by [@renovate[bot]](https://github.com/renovate[bot]) ([`6cbb98d`](https://github.com/kristof-mattei/hyper-unix-socket/commit/6cbb98dc877f5d2785ceb938f3fca30172c21bbe))
-- *(deps)* Update rust crate tokio to v1.46.0 by [@renovate[bot]](https://github.com/renovate[bot]) ([`f58d63f`](https://github.com/kristof-mattei/hyper-unix-socket/commit/f58d63f0ef13d5c699adbaab720504d57d84a1b3))
-- *(deps)* Update rust crate tokio to v1.46.1 by [@renovate[bot]](https://github.com/renovate[bot]) ([`800d6cb`](https://github.com/kristof-mattei/hyper-unix-socket/commit/800d6cbcdad94c27f4306aadd6540194c435d84a))
-- *(deps)* Update rust crate hyper-util to v0.1.15 by [@renovate[bot]](https://github.com/renovate[bot]) ([`b8a9926`](https://github.com/kristof-mattei/hyper-unix-socket/commit/b8a992614b61c5e4e30fb0eff7ef4a07f7c79f6b))
-- *(deps)* Update rust crate hyper-util to v0.1.16 by [@renovate[bot]](https://github.com/renovate[bot]) ([`270ce1e`](https://github.com/kristof-mattei/hyper-unix-socket/commit/270ce1ede391b4db1515b8b4088edbca0975cb8d))
-- *(deps)* Update rust crate tokio to v1.47.0 by [@renovate[bot]](https://github.com/renovate[bot]) ([`69cb22c`](https://github.com/kristof-mattei/hyper-unix-socket/commit/69cb22c5ab69ff722bb77fb518dbf5b2b981b8f4))
 - *(deps)* Update rust crate tokio to v1.47.1 by [@renovate[bot]](https://github.com/renovate[bot]) ([`6ee14f7`](https://github.com/kristof-mattei/hyper-unix-socket/commit/6ee14f79f8c78d121a6b8176ce0870033eea3988))
 - *(deps)* Update rust crate hyper to v1.7.0 by [@renovate[bot]](https://github.com/renovate[bot]) ([`ca3b0bf`](https://github.com/kristof-mattei/hyper-unix-socket/commit/ca3b0bfd63043015e6391a133b445857d49d8a13))
 - *(deps)* Update rust crate hyper-util to v0.1.17 by [@renovate[bot]](https://github.com/renovate[bot]) ([`7b3ce79`](https://github.com/kristof-mattei/hyper-unix-socket/commit/7b3ce79dd8bdc63052817faa087f4b84ee3e6aa9))
@@ -298,7 +285,6 @@
 - Build-mode `manual` is not supported for Rust by [@kristof-mattei](https://github.com/kristof-mattei) ([`7659499`](https://github.com/kristof-mattei/hyper-unix-socket/commit/76594994e616ebef734f5a7c275c5a19249d5d52))
 - Pnpm by [@kristof-mattei](https://github.com/kristof-mattei) ([`229ffad`](https://github.com/kristof-mattei/hyper-unix-socket/commit/229ffad2a4bb0deb7f0c2d4fa954c84691262494))
 - Ignore pnpm-lock.yaml format by [@kristof-mattei](https://github.com/kristof-mattei) ([`34ee806`](https://github.com/kristof-mattei/hyper-unix-socket/commit/34ee80670cf28b511be17ca61fdb52d0eb463ce4))
-- Clippy config comes from Cargo.toml only by [@kristof-mattei](https://github.com/kristof-mattei) ([`cc2c125`](https://github.com/kristof-mattei/hyper-unix-socket/commit/cc2c1257d77680cc7575ad7c99de9750e5a1b3f7))
 - Ensure cargo.lock is up to date by [@kristof-mattei](https://github.com/kristof-mattei) ([`75f241b`](https://github.com/kristof-mattei/hyper-unix-socket/commit/75f241bf01868d419fa383572650b891c06cacc6))
 - Remove unused script by [@kristof-mattei](https://github.com/kristof-mattei) ([`f8aa057`](https://github.com/kristof-mattei/hyper-unix-socket/commit/f8aa05727ba3a31d557bb9287eccf147edc8827d))
 - Also set style_edition by [@kristof-mattei](https://github.com/kristof-mattei) ([`172d6ab`](https://github.com/kristof-mattei/hyper-unix-socket/commit/172d6ab04a50b2f19415ec0b64726b6d6d773db5))
@@ -355,7 +341,6 @@
 - Ensure we have oras by [@kristof-mattei](https://github.com/kristof-mattei) ([`adb17dd`](https://github.com/kristof-mattei/hyper-unix-socket/commit/adb17dd3071a0f100b7f9b25d5ee79b2af0594da))
 - Fix title by [@kristof-mattei](https://github.com/kristof-mattei) ([`1ecfb70`](https://github.com/kristof-mattei/hyper-unix-socket/commit/1ecfb70f8778f65098b117403bbc1574a2f6a017))
 - Install cargo-binstall from updated url by [@kristof-mattei](https://github.com/kristof-mattei) ([`8172e7f`](https://github.com/kristof-mattei/hyper-unix-socket/commit/8172e7fe5a8996eb4b499ccd4ee443f7e5ee2cca))
-- Rust 1.85.0 by [@kristof-mattei](https://github.com/kristof-mattei) ([`d876c00`](https://github.com/kristof-mattei/hyper-unix-socket/commit/d876c00796252ef81adf85ea6ae8fc25b9d5e0d8))
 - Format dockerfile by [@kristof-mattei](https://github.com/kristof-mattei) ([`edb1f30`](https://github.com/kristof-mattei/hyper-unix-socket/commit/edb1f309e3326acbad14b3b83aea65b53e12e506))
 - Fmt also 1.85.0 by [@kristof-mattei](https://github.com/kristof-mattei) ([`c9488e3`](https://github.com/kristof-mattei/hyper-unix-socket/commit/c9488e384c6ac0816b2a02574f18e0e54eff3b12))
 - Remove oras by [@kristof-mattei](https://github.com/kristof-mattei) ([`8eceae9`](https://github.com/kristof-mattei/hyper-unix-socket/commit/8eceae99297f4f5900549ef08f6105df530069cb))
@@ -440,10 +425,7 @@
 
 ### 🐛 Bug Fixes
 
-- *(deps)* Update rust crate hyper to v1.5.0 by [@renovate[bot]](https://github.com/renovate[bot]) ([`e054812`](https://github.com/kristof-mattei/hyper-unix-socket/commit/e0548129cfcb3e721e903fb166ebba0d62d05b4a))
-- *(deps)* Update rust crate bytes to v1.8.0 by [@renovate[bot]](https://github.com/renovate[bot]) ([`0968f4e`](https://github.com/kristof-mattei/hyper-unix-socket/commit/0968f4ef0a8344ce7c4a6344abf53bc3ab4204a9))
 - *(deps)* Update rust crate pin-project-lite to v0.2.15 by [@renovate[bot]](https://github.com/renovate[bot]) ([`862b079`](https://github.com/kristof-mattei/hyper-unix-socket/commit/862b079db0aa6c585ab751bb2ba1cd97dd3617f2))
-- *(deps)* Update rust crate hyper to v1.5.1 by [@renovate[bot]](https://github.com/renovate[bot]) ([`7e0dc4e`](https://github.com/kristof-mattei/hyper-unix-socket/commit/7e0dc4e1af5846e9d37f31dfb54a8069101d5918))
 - *(deps)* Update rust crate bytes to v1.9.0 by [@renovate[bot]](https://github.com/renovate[bot]) ([`1aced86`](https://github.com/kristof-mattei/hyper-unix-socket/commit/1aced86b2cc2c6f0efd3c112252c2675ba9a1e26))
 - *(deps)* Update rust crate hyper to v1.5.2 by [@renovate[bot]](https://github.com/renovate[bot]) ([`fd512ec`](https://github.com/kristof-mattei/hyper-unix-socket/commit/fd512ecf434acc169cc0fdfce92d76a05244636b))
 - Prettier 3.4.0 fixes by [@kristof-mattei](https://github.com/kristof-mattei) ([`aba9a99`](https://github.com/kristof-mattei/hyper-unix-socket/commit/aba9a996f1ad5d8bd72b85009ef67d5f4a25bac5))
@@ -467,9 +449,6 @@
 
 - *(deps)* Update rust crate color-eyre to 0.6.3 by [@renovate[bot]](https://github.com/renovate[bot]) ([`baf1dc7`](https://github.com/kristof-mattei/hyper-unix-socket/commit/baf1dc7b4352679914415662a2b16ec8f036d409))
 - *(deps)* Update rust crate hyper to v1.4.1 by [@renovate[bot]](https://github.com/renovate[bot]) ([`ec69877`](https://github.com/kristof-mattei/hyper-unix-socket/commit/ec698771601dccc6139153d76ed788c51c58c4ae))
-- *(deps)* Update rust crate bytes to v1.6.1 by [@renovate[bot]](https://github.com/renovate[bot]) ([`3a48258`](https://github.com/kristof-mattei/hyper-unix-socket/commit/3a48258d62926a5b6386012a11e0770e9f6bcc99))
-- *(deps)* Update rust crate bytes to v1.7.0 by [@renovate[bot]](https://github.com/renovate[bot]) ([`8f2cbb5`](https://github.com/kristof-mattei/hyper-unix-socket/commit/8f2cbb5918bdb76636d9666fdf34f775ed23b8bb))
-- *(deps)* Update rust crate bytes to v1.7.1 by [@renovate[bot]](https://github.com/renovate[bot]) ([`ad21608`](https://github.com/kristof-mattei/hyper-unix-socket/commit/ad21608f35836f2740ca1cee4ef017b920c18313))
 - *(deps)* Update rust crate tower-service to v0.3.3 by [@renovate[bot]](https://github.com/renovate[bot]) ([`e07309e`](https://github.com/kristof-mattei/hyper-unix-socket/commit/e07309e50012fa06cea0724d4ffea22abe78a5a4))
 - *(deps)* Update rust crate bytes to v1.7.2 by [@renovate[bot]](https://github.com/renovate[bot]) ([`ea8120c`](https://github.com/kristof-mattei/hyper-unix-socket/commit/ea8120c74dae21927d234fe2aa3da425f4176b14))
 - Fix new version by [@kristof-mattei](https://github.com/kristof-mattei) ([`ef697ab`](https://github.com/kristof-mattei/hyper-unix-socket/commit/ef697abfef681fa7d69f7baa93c9c76b77b3548c))
@@ -844,7 +823,6 @@
 - Fixed title by [@kristof-mattei](https://github.com/kristof-mattei) ([`14bdc49`](https://github.com/kristof-mattei/hyper-unix-socket/commit/14bdc49a2c8135972be93fef36a425bd9b094c80))
 - Correctly report test failure by [@kristof-mattei](https://github.com/kristof-mattei) ([`6250142`](https://github.com/kristof-mattei/hyper-unix-socket/commit/6250142008a5f74fad09c6088fa64ec87d5c49a5))
 - Also update cargo & toolchain by [@kristof-mattei](https://github.com/kristof-mattei) ([`291be2a`](https://github.com/kristof-mattei/hyper-unix-socket/commit/291be2aa3dd1d15c726686b0dd71ff2e35bff341))
-- Also update cargo & toolchain by [@kristof-mattei](https://github.com/kristof-mattei) ([`52e4649`](https://github.com/kristof-mattei/hyper-unix-socket/commit/52e46491946ebb62922e3f120ec4d9b5c33f8d81))
 - Fail done properly by [@kristof-mattei](https://github.com/kristof-mattei) ([`9a420bf`](https://github.com/kristof-mattei/hyper-unix-socket/commit/9a420bf23ae315b64a7a0d20734de30db6ac01df))
 - Made task file rust-analyzer compliant by [@kristof-mattei](https://github.com/kristof-mattei) ([`6f244be`](https://github.com/kristof-mattei/hyper-unix-socket/commit/6f244beea8c5c8232b66f51bb1dcd0d42759d223))
 - Spacing and remove verbose by [@kristof-mattei](https://github.com/kristof-mattei) ([`abceeeb`](https://github.com/kristof-mattei/hyper-unix-socket/commit/abceeeb0e023cd1629df3540fe5f9d310b8dbd36))
