@@ -22,7 +22,7 @@ pub struct UnixSocketConnector<P> {
 }
 
 impl<P: AsRef<Path>> UnixSocketConnector<P> {
-    /// Construct a new `UnixStreamConnector`.
+    /// Construct a new `UnixSocketConnector`.
     #[must_use]
     pub fn new(socket_path: P) -> Self {
         Self { socket_path }
@@ -37,7 +37,7 @@ impl<T: AsRef<Path>> From<T> for UnixSocketConnector<T> {
 
 impl<T> fmt::Debug for UnixSocketConnector<T> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.debug_struct("HttpsConnector").finish_non_exhaustive()
+        f.debug_struct("UnixSocketConnector").finish_non_exhaustive()
     }
 }
 
