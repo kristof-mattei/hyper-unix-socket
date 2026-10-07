@@ -18,7 +18,7 @@ hyper-util = { version = "0.1.17", default-features = false, features = [
     "tokio",
 ] }
 pin-project-lite = "0.2.16"
-tokio = { version = "1.13.0", default-features = false, features = ["net"] }
+tokio = { version = "1.53.0", default-features = false, features = ["net"] }
 tower-service = "0.3"
 
 [dev-dependencies]
@@ -28,7 +28,8 @@ hyper-util = { version = "0.1.17", default-features = false, features = [
     "http1",
 ] }
 pretty_assertions = "1.4.1"
-tokio = { version = "1.13.0", features = ["macros", "io-util"] }
+tempfile = "3.27.0"
+tokio = { version = "1.53.0", features = ["macros", "io-util"] }
 
 [[example]]
 doc-scrape-examples = true
