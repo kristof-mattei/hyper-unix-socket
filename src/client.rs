@@ -1,8 +1,7 @@
-use std::future::Future;
 use std::marker::PhantomData;
 use std::path::Path;
 use std::pin::Pin;
-use std::task::{self, Context, Poll};
+use std::task::{Context, Poll};
 use std::{fmt, io};
 
 use hyper::Uri;
@@ -15,7 +14,12 @@ use super::UnixSocketConnection;
 
 type BoxError = Box<dyn std::error::Error + Send + Sync>;
 
+#[expect(
+    clippy::inline_modules,
+    reason = "Established pattern for Sealed traits"
+)]
 pub(crate) mod sealed {
+    #[expect(unnameable_types, reason = "Sealed trait")]
     pub trait Sealed {}
 }
 
@@ -53,7 +57,7 @@ impl<T: UnixSocketTarget> From<T> for UnixSocketConnector<T> {
 }
 
 impl<T> fmt::Debug for UnixSocketConnector<T> {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.debug_struct("UnixSocketConnector")
             .finish_non_exhaustive()
     }
@@ -104,13 +108,13 @@ pin_project! {
 impl<R> Future for UnixStreamConnecting<R> {
     type Output = ConnectResult;
 
-    fn poll(self: Pin<&mut Self>, cx: &mut task::Context<'_>) -> Poll<Self::Output> {
+    fn poll(self: Pin<&mut Self>, cx: &mut Context<'_>) -> Poll<Self::Output> {
         self.project().fut.poll(cx)
     }
 }
 
 impl<R> fmt::Debug for UnixStreamConnecting<R> {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.pad("UnixStreamConnecting")
     }
 }

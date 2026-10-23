@@ -14,7 +14,7 @@ pub struct UnixSocketConnection(TokioIo<UnixStream>);
 // ===== impl UnixSocketConnection =====
 
 impl fmt::Debug for UnixSocketConnection {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.debug_tuple("UnixSocketConnection")
             .field(&self.0)
             .finish()
@@ -31,7 +31,7 @@ impl Read for UnixSocketConnection {
     #[inline]
     fn poll_read(
         self: Pin<&mut Self>,
-        cx: &mut Context,
+        cx: &mut Context<'_>,
         buf: ReadBufCursor<'_>,
     ) -> Poll<Result<(), io::Error>> {
         Pin::new(&mut Pin::get_mut(self).0).poll_read(cx, buf)

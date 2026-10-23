@@ -1,4 +1,3 @@
-use std::future::Future;
 use std::io;
 #[cfg(target_os = "android")]
 use std::os::android::net::SocketAddrExt as _;
