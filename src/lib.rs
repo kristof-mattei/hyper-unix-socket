@@ -3,7 +3,10 @@
 //! [`UnixSocketConnector`] connects a [`hyper_util::client::legacy::Client`] to one of:
 //!
 //! - a socket path, any `AsRef<Path>`
-//! - a name in the abstract socket namespace, see [`AbstractName`] (Linux and Android only)
+#![cfg_attr(
+    any(target_os = "linux", target_os = "android"),
+    doc = "- a name in the abstract socket namespace, see [`AbstractName`] (Linux and Android only)"
+)]
 //!
 //! # Example
 //!
