@@ -16,6 +16,7 @@ errorlens
 grcov
 headgreen
 idents
+kjanat
 kristof
 lintian
 mattei
@@ -35,7 +36,6 @@ rawfile
 retag
 retagging
 retags
-rhysd
 rustdocflags
 rustflags
 samply
